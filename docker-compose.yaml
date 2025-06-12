@@ -1,0 +1,16 @@
+services:
+  fastlio:
+    build: .
+    gpus: all
+    container_name: fastlio_container
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /dev/bus/usb:/dev/bus/usb
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./ros_bags:/root/catkin_ws/src/FAST-LIO/ros_bags
+      - ./Log:/root/catkin_ws/src/FAST-LIO/Log
+    devices:
+      - /dev/dri:/dev/dri
+    network_mode: host
