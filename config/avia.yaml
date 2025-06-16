@@ -36,4 +36,5 @@ pcd_save:
 
 # xhost +local:root
 # roslaunch fast_lio mapping_avia.launch
-# rosbag play src/FAST-LIO/ros_bags/log_
+# rosbag play src/FAST-LIO/ros_bags/
+# rosrun fast_lio lio_diagnostic.py --save_tum_file

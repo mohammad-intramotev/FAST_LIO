@@ -10,18 +10,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Set working directory
 WORKDIR $CATKIN_WS/src
 
-# Fix ROS key issue and install core dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-      curl gnupg2 lsb-release ca-certificates \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -f /etc/apt/sources.list.d/ros1-latest.list \
-              /usr/share/keyrings/ros1-latest-archive-keyring.gpg \
-    && curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
-        -o /usr/share/keyrings/ros1-latest-archive-keyring.gpg \
-    && echo "deb [signed-by=/usr/share/keyrings/ros1-latest-archive-keyring.gpg] \
-        http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" \
-        > /etc/apt/sources.list.d/ros-latest.list
-
 # Install ROS packages and tools
 RUN apt-get update && apt-get install -y \
       git \
